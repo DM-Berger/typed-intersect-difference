@@ -16,7 +16,8 @@
 
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint"
+    "preversion": "npm run lint",
+    "postversion": "git push && git push --tags"
   },
   "author": "Derek Berger <dmberger.dev@gmail.com>",
   "license": "MIT",
