@@ -1,0 +1,37 @@
+{
+  "name": "typed-intersect-difference",
+  "version": "1.0.0",
+  "description": "generic, typed intersection of sorted (ascending) arrays of objects",
+  "main": "dist/index.ts",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "author": "Derek Berger <dmberger.dev@gmail.com>",
+  "license": "MIT",
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "dependencies": {
+    "@types/jest": "^24.0.6",
+    "jest": "^24.1.0",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.3"
+  }
+}
