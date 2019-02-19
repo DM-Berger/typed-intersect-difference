@@ -1,7 +1,8 @@
 {
   "name": "typed-intersect-difference",
   "version": "1.0.0",
-  "description": "generic, typed intersection of sorted (ascending) arrays of objects",
+  "description": "generic, typed intersection/difference of sorted arrays of unique objects",
+  "keywords": ["intersect", "difference"],
   "main": "dist/index.ts",
   "types": "dist/index.d.ts",
   "directories": {
@@ -11,10 +12,18 @@
     "build": "tsc",
     "lint": "tslint -p tsconfig.json",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint"
   },
   "author": "Derek Berger <dmberger.dev@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DM-Berger/typed-intersect-difference"
+  },
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
