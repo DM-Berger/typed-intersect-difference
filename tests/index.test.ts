@@ -25,8 +25,8 @@ function buildIntersectables(length1: number, length2: number, maxVal: number):
   shuffle(ids2);
 
   [ids1, ids2] = [ids1.slice(0, length1), ids2.slice(0, length2)];
-  let a1 = ids1.sort(sorter).map(id => ({id}));
-  let a2 = ids2.sort(sorter).map(id => ({id}));
+  const a1 = ids1.sort(sorter).map(id => ({id}));
+  const a2 = ids2.sort(sorter).map(id => ({id}));
 
   return [a1, a2];
 }
@@ -78,14 +78,14 @@ describe("Intersection of sorted arrays: ", () => {
       const ids1 = a1.map(item => item.id);
       const ids2 = new Set(a2.map(item => item.id));
 
-      let uniqueIds = [];
+      const uniqueIds = [];
       for (const id of ids1) {
         if (ids2.has(id)) {
           uniqueIds.push(id);
         }
       }
 
-      let setIntersected = uniqueIds.sort(sorter).map(id => ({id}));
+      const setIntersected = uniqueIds.sort(sorter).map(id => ({id}));
 
       let intersected = intersect(a1, a2, "id");
       if (intersected === null) { return; }
@@ -99,22 +99,22 @@ describe("Intersection of sorted arrays: ", () => {
 
   it("Intersects random complex arrays", () => {
     for (let i = 0; i < 100; i++) {
-      let [arr1, arr2] = buildIntersectables(10 + randInt(20), 10 + randInt(10), 30);
-      let a1 = arr1.map(item => ({
+      const [arr1, arr2] = buildIntersectables(10 + randInt(20), 10 + randInt(10), 30);
+      const a1 = arr1.map(item => ({
         id: item.id,
         str: `${item.id}${Date.now()}`,
-        val: item.id + 10*Math.random(),
+        val: item.id + 10 * Math.random(),
       }));
-      let a2 = arr2.map(item => ({
+      const a2 = arr2.map(item => ({
+        date: new Date(),
         id: item.id,
         salad: `${Math.floor(10 * Math.random())}salad`,
-        date: new Date(),
       }));
 
       const set1 = new Set(a1);
       const set2 = new Set(a2.map(item => item.id));
 
-      let setIntersected = [];
+      const setIntersected = [];
       for (const item of set1) {
         if (set2.has(item.id)) {
           setIntersected.push(item);
@@ -132,7 +132,6 @@ describe("Intersection of sorted arrays: ", () => {
   });
 });
 
-
 function buildSubtractables(length1: number, length2: number, maxVal: number):
   [Array<{id: number}>, Array<{id: number}>] {
   if (length1 > maxVal || length2 > maxVal) {
@@ -149,8 +148,8 @@ function buildSubtractables(length1: number, length2: number, maxVal: number):
   shuffle(ids2);
 
   [ids1, ids2] = [ids1.slice(0, length1), ids2.slice(0, length2)];
-  let a1 = ids1.sort(sorter).map(id => ({id}));
-  let a2 = ids2.sort(sorter).map(id => ({id}));
+  const a1 = ids1.sort(sorter).map(id => ({id}));
+  const a2 = ids2.sort(sorter).map(id => ({id}));
 
   return [a1, a2];
 }
@@ -166,7 +165,7 @@ describe("Subtraction of sorted arrays: ", () => {
       const [a1, a2] = buildSubtractables(0, randInt(10), 10);
       expect(difference(a1, a1, "id")).toEqual([]);
       expect(difference(a1, a2, "id")).toEqual([]);
-      expect(difference(a2, a1, "id")).toEqual(a2);      
+      expect(difference(a2, a1, "id")).toEqual(a2);
     }
   });
 
@@ -202,7 +201,7 @@ describe("Subtraction of sorted arrays: ", () => {
 
       const ids2 = new Set(a2.map(item => item.id));
 
-      let uniques = [];
+      const uniques = [];
       for (const item of a1) {
         if (!ids2.has(item.id)) {
           uniques.push(item);
@@ -222,21 +221,21 @@ describe("Subtraction of sorted arrays: ", () => {
 
   it("Subtracts random complex arrays", () => {
     for (let i = 0; i < 100; i++) {
-      let [arr1, arr2] = buildSubtractables(10 + randInt(20), 10 + randInt(10), 30);
-      let a1 = arr1.map(item => ({
+      const [arr1, arr2] = buildSubtractables(10 + randInt(20), 10 + randInt(10), 30);
+      const a1 = arr1.map(item => ({
         id: item.id,
         str: `${item.id}${Date.now()}`,
-        val: item.id + 10*Math.random(),
+        val: item.id + 10 * Math.random(),
       }));
-      let a2 = arr2.map(item => ({
+      const a2 = arr2.map(item => ({
+        date: new Date(),
         id: item.id,
         salad: `${Math.floor(10 * Math.random())}salad`,
-        date: new Date(),
       }));
 
       const set2 = new Set(a2.map(item => item.id));
 
-      let uniques = [];
+      const uniques = [];
       for (const item of a1) {
         if (!set2.has(item.id)) {
           uniques.push(item);
