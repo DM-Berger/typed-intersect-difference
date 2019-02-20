@@ -7,10 +7,11 @@
     "difference"
   ],
   "files": [
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "directories": {
     "test": "tests"
   },
