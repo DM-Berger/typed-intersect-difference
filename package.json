@@ -1,6 +1,6 @@
 {
   "name": "typed-intersect-difference",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "generic, typed intersection/difference of sorted arrays of unique objects",
   "keywords": [
     "intersect",
