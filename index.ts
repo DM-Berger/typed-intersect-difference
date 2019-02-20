@@ -36,6 +36,9 @@ export function intersect<S, K extends keyof S, T extends Pick<S, K>>(arr1: S[],
 }
 
 /**
+ * Computes the set difference (A / B or A - B) of two **SORTED**
+ * (ascending) arrays on a shared key `key`. Assumes all values
+ * indexed by key `key` are unique.
  * @template S, T, K
  * @template {object} S - indexable by key K
  * @template {object} T - indexable by key K and typeof T[K] == typeof S[K]
