@@ -251,3 +251,45 @@ describe("Subtraction of sorted arrays: ", () => {
     }
   });
 });
+
+describe("Errors on mismatched types with no key", () => {
+  it("Errors on bad plain arrays", async () => {
+    const a1 = [3, 5, 9].map(id => ({id}));
+    const a2 = [1, 2, 5, 8, 9, 10].map(id => ({id}));
+    const s1 = ["a", "b", "c", "d"].map(id => ({id}));
+    const s2 = ["b", "d", "j", "z"].map(id => ({id}));
+    const d1: Date[] = [];
+    const d2: Date[] = [];
+    for (let i = 0; i < 4; i++) {
+      await new Promise(resolve => {
+        setTimeout(() => {
+          d1.push(new Date());
+          if (i >= 2) { // ensure some intersection
+            const d = new Date();
+            d1.push(d);
+            d2.push(d);
+          }
+          resolve();
+        }, 100 * Math.random());
+      });
+    }
+    for (let i = 0; i < 3; i++) {
+      await new Promise(resolve => {
+        setTimeout(() => {
+          d2.push(new Date());
+          resolve();
+        }, 100 * Math.random());
+      });
+    }
+    const dId1 = d1.map(id => ({id}));
+    const dId2 = d2.map(id => ({id}));
+
+    expect(() => intersect(a1, a2)).toThrowError("values indexed by idKey must be sortable");
+    expect(() => intersect(s1, s2)).toThrowError("values indexed by idKey must be sortable");
+    expect(() => intersect(dId1, dId2)).toThrowError("values indexed by idKey must be sortable");
+
+    expect(() => difference(a1, a2)).toThrowError("values indexed by idKey must be sortable");
+    expect(() => difference(s1, s2)).toThrowError("values indexed by idKey must be sortable");
+    expect(() => difference(dId1, dId2)).toThrowError("values indexed by idKey must be sortable");
+  });
+});

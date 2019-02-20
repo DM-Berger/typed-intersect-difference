@@ -8,6 +8,9 @@
  */
 export function intersect<S, K extends keyof S, T extends Pick<S, K>>(arr1: S[], arr2: T[], idKey?: K): S[] {
   if (arr1.length === 0 || arr2.length === 0) { return arr1.slice(); }
+  if (!idKey && !validArgTypes<S, K, T>(arr1, arr2)) {
+    throw new Error("values indexed by idKey must be sortable");
+  }
 
   const intersects: S[] = [];
   let i = 0;
@@ -41,6 +44,9 @@ export function intersect<S, K extends keyof S, T extends Pick<S, K>>(arr1: S[],
 export function difference<S, K extends keyof S, T extends Pick<S, K>>(arr1: S[], arr2: T[], idKey?: K): S[] {
   if (arr1.length === 0) { return []; }
   if (arr2.length === 0) { return arr1.slice(); }
+  if (!idKey && !validArgTypes<S, K, T>(arr1, arr2)) {
+    throw new Error("values indexed by idKey must be sortable");
+  }
 
   const keep: S[] = [];
 
@@ -60,4 +66,16 @@ export function difference<S, K extends keyof S, T extends Pick<S, K>>(arr1: S[]
 
   while (i < arr1.length) { keep.push(arr1[i++]); }
   return keep;
- }
+}
+
+function validArgTypes<S, K extends keyof S, T extends Pick<S, K>>(arr1: S[], arr2: T[]): boolean {
+  const type1 = typeof arr1[0];
+  const type2 = typeof arr2[0];
+  const inst1 = arr1[0] instanceof Date;
+  const inst2 = arr2[0] instanceof Date;
+  const validTypes =
+    (type1 === type2) &&
+    (inst1 === inst2) &&
+    (type1 === "string" || type1 === "number");
+  return validTypes;
+}
