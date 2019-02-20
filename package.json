@@ -6,17 +6,16 @@
     "intersect",
     "difference"
   ],
-  "main": "dist/index.ts",
-  "types": "dist/index.d.ts",
+  "files": ["index.ts", ""],
+  "main": "./index.ts",
+  "types": "./index.d.ts",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "build": "tsc",
     "lint": "tslint -p tsconfig.json",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags"
@@ -41,7 +40,7 @@
       "node"
     ]
   },
-  "dependencies": {
+  "devDependencies": {
     "@types/jest": "^24.0.6",
     "jest": "^24.1.0",
     "ts-jest": "^24.0.0",

@@ -5,7 +5,7 @@
     "module": "es2015",
     "lib": ["es6", "es7"],
     "declaration": true,
-    "outDir": "dist",                        /* Redirect output structure to the directory. */
+    "outDir": "./",                        /* Redirect output structure to the directory. */
     "removeComments": true,                /* Do not emit comments to output. */
     "downlevelIteration": true,
 
