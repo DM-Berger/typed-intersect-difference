@@ -1,12 +1,15 @@
 {
   "name": "typed-intersect-difference",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "generic, typed intersection/difference of sorted arrays of unique objects",
   "keywords": [
     "intersect",
     "difference"
   ],
-  "files": ["index.ts", ""],
+  "files": [
+    "index.ts",
+    ""
+  ],
   "main": "./index.ts",
   "types": "./index.d.ts",
   "directories": {
