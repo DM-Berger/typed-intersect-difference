@@ -1,9 +1,10 @@
 /**
  * Intersect two **SORTED** (ascending) arrays on a shared key `key`.
  * Assumes all values indexed by key are unique.
- * @template S any object with a uniquely identifying key field
- * @template K the name of the uniquely identifying key field
- * @template T any object that at least shares the same kind of uniquely identifying key field as S
+ * @template S, T, K
+ * @template {object} S - indexable by key K
+ * @template {object} T - indexable by key K and typeof T[K] == typeof S[K]
+ * @template {string} K - must index objects of both type S and type T
  * @argument arr1 first array sorted (ascending) on `key`. Its values get returned.
  * @argument arr2 second array sorted (ascending) on `key`
  * @argument idKey? the key to intersect on
@@ -35,9 +36,10 @@ export function intersect<S, K extends keyof S, T extends Pick<S, K>>(arr1: S[],
 }
 
 /**
- * @template S any object with a uniquely identifying key field
- * @template K the name of the uniquely identifying key field
- * @template T any object that at least shares the same kind of uniquely identifying key field as S
+ * @template S, T, K
+ * @template {object} S - indexable by key K
+ * @template {object} T - indexable by key K and typeof T[K] == typeof S[K]
+ * @template {string} K - must index objects of both type S and type T
  * @argument arr1 array sorted (ascending) on `key`. Its values get returned.
  * @argument arr2 second array sorted (ascending) on `key`
  * @argument idKey? the key to intersect on
