@@ -11,7 +11,7 @@
  * @returns the objects of **arr1** sharing `key` values with arr2 (arr2 vals lost)
  */
 export function intersect<S, K extends keyof S, T extends Pick<S, K>>(arr1: S[], arr2: T[], idKey?: K): S[] {
-  if (arr1.length === 0 || arr2.length === 0) { return arr1.slice(); }
+  if (arr1.length === 0 || arr2.length === 0) { return []; }
   if (!idKey && !validArgTypes<S, K, T>(arr1, arr2)) {
     throw new Error("values indexed by idKey must be sortable");
   }
